@@ -22,4 +22,27 @@ public class Customer {
     public ArrayList<Vehicle> getOwnedVehicles() {
         return ownedVehicles;
     }
+
+    public int getOwnedVehiclesCount() {
+        return ownedVehicles.size();
+    }
+
+    public void assessDamage(Vehicle vehicle){
+        double modifier = vehicle.getDamage().getModifier();
+        vehicle.modifyPrice(modifier);
+    }
+
+    public void buy(Vehicle vehicle) {
+        this.assessDamage(vehicle);
+        double price = vehicle.getPrice();
+        if(wallet >= vehicle.getPrice()) {
+            ownedVehicles.add(vehicle);
+            wallet -= vehicle.getPrice();
+        }
+    }
+
+
+
+
+
 }
